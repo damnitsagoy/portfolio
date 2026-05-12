@@ -1,3 +1,11 @@
+import { client, urlFor, isSanityConfigured } from "@/sanity/client";
+import {
+  allProjectsQuery,
+  featuredProjectsQuery,
+  projectBySlugQuery,
+  allCategoriesQuery,
+} from "@/sanity/queries";
+
 export interface Project {
   id: string;
   slug: string;
@@ -5,7 +13,7 @@ export interface Project {
   tagline: string;
   category: string[];
   techStack: string[];
-  thumbnail: string;
+  thumbnail: string | any;
   year: string;
   featured: boolean;
   description: string;
@@ -14,10 +22,76 @@ export interface Project {
   outcome: string;
   liveUrl?: string;
   sourceUrl?: string;
+  heroMedia?: any;
+  heroVideo?: string;
+  body?: any[];
+  gallery?: any[];
   images?: string[];
 }
 
-export const projects: Project[] = [
+// Helper: get thumbnail URL from Sanity image or fallback string
+export function getThumbnailUrl(thumbnail: any): string {
+  if (!thumbnail) return "";
+  if (typeof thumbnail === "string") return thumbnail;
+  if (thumbnail.asset) return urlFor(thumbnail).width(800).url();
+  return "";
+}
+
+// ─── Sanity-powered fetchers ─────────────────────────────────────────────
+
+export async function getAllProjects(): Promise<Project[]> {
+  if (isSanityConfigured && client) {
+    try {
+      const data = await client.fetch(allProjectsQuery);
+      if (data && data.length > 0) return data;
+    } catch (e) {
+      // Sanity fetch failed, fall through to local data
+    }
+  }
+  return localProjects;
+}
+
+export async function getFeaturedProjects(): Promise<Project[]> {
+  if (isSanityConfigured && client) {
+    try {
+      const data = await client.fetch(featuredProjectsQuery);
+      if (data && data.length > 0) return data;
+    } catch (e) {
+      // Fall through
+    }
+  }
+  return localProjects.filter((p) => p.featured);
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
+  if (isSanityConfigured && client) {
+    try {
+      const data = await client.fetch(projectBySlugQuery, { slug });
+      if (data) return data;
+    } catch (e) {
+      // Fall through
+    }
+  }
+  return localProjects.find((p) => p.slug === slug);
+}
+
+export async function getAllCategories(): Promise<string[]> {
+  if (isSanityConfigured && client) {
+    try {
+      const data = await client.fetch(allCategoriesQuery);
+      if (data && data.length > 0) return data.sort();
+    } catch (e) {
+      // Fall through
+    }
+  }
+  const categories = new Set<string>();
+  localProjects.forEach((p) => p.category.forEach((c) => categories.add(c)));
+  return Array.from(categories).sort();
+}
+
+// ─── Local fallback data ─────────────────────────────────────────────────
+
+export const localProjects: Project[] = [
   {
     id: "01",
     slug: "ecommerce-platform",
@@ -141,17 +215,3 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com",
   },
 ];
-
-export function getFeaturedProjects(): Project[] {
-  return projects.filter((p) => p.featured);
-}
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
-}
-
-export function getAllCategories(): string[] {
-  const categories = new Set<string>();
-  projects.forEach((p) => p.category.forEach((c) => categories.add(c)));
-  return Array.from(categories).sort();
-}

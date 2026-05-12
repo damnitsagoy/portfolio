@@ -1,22 +1,37 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { getProjectBySlug, projects } from "@/lib/projects";
-import { notFound } from "next/navigation";
+import { getProjectBySlug, getAllProjects, getThumbnailUrl, type Project } from "@/lib/projects";
+import { urlFor } from "@/sanity/client";
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
-  const project = getProjectBySlug(slug);
+  const [project, setProject] = useState<Project | undefined>();
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    getProjectBySlug(slug).then(setProject);
+    getAllProjects().then(setAllProjects);
+  }, [slug]);
 
   if (!project) {
-    notFound();
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
+          Loading...
+        </span>
+      </div>
+    );
   }
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+  const currentIndex = allProjects.findIndex((p) => p.slug === slug);
+  const nextProject = allProjects.length > 0
+    ? allProjects[(currentIndex + 1) % allProjects.length]
+    : null;
 
   return (
     <div className="min-h-screen">
@@ -78,7 +93,7 @@ export default function ProjectDetailPage() {
         <div className="border-t border-dotted border-border mt-12" />
       </section>
 
-      {/* Hero Image Placeholder */}
+      {/* Hero Image */}
       <section className="max-w-7xl mx-auto px-6 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,13 +101,23 @@ export default function ProjectDetailPage() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="aspect-[21/9] bg-bg-secondary border border-border relative overflow-hidden"
         >
-          <div className="absolute inset-0 dot-grid opacity-20" />
-          <div className="absolute bottom-6 right-6 font-display font-bold text-[8rem] text-border/50 leading-none">
-            {project.id}
-          </div>
-          <div className="absolute top-6 left-6 font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
-            Project Hero — {project.title}
-          </div>
+          {project.heroMedia?.asset ? (
+            <img
+              src={urlFor(project.heroMedia).width(1400).url()}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 dot-grid opacity-20" />
+              <div className="absolute bottom-6 right-6 font-display font-bold text-[8rem] text-border/50 leading-none">
+                {project.id}
+              </div>
+              <div className="absolute top-6 left-6 font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
+                Project Hero — {project.title}
+              </div>
+            </>
+          )}
         </motion.div>
       </section>
 
@@ -191,23 +216,46 @@ export default function ProjectDetailPage() {
               </p>
             </div>
 
+            {/* Gallery */}
             <div className="hairline" />
             <div>
               <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
                 Gallery
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[1, 2, 3, 4].map((n) => (
-                  <div
-                    key={n}
-                    className="aspect-[4/3] bg-bg-secondary border border-border relative"
-                  >
-                    <div className="absolute inset-0 dot-grid opacity-10" />
-                    <span className="absolute bottom-3 left-3 font-mono text-[10px] text-text-muted">
-                      Screenshot {n}
-                    </span>
-                  </div>
-                ))}
+                {project.gallery && project.gallery.length > 0
+                  ? project.gallery.map((img, n) => (
+                      <div
+                        key={n}
+                        className="aspect-[4/3] bg-bg-secondary border border-border relative overflow-hidden"
+                      >
+                        {img.asset ? (
+                          <img
+                            src={urlFor(img).width(600).url()}
+                            alt={img.caption || `Screenshot ${n + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        ) : (
+                          <>
+                            <div className="absolute inset-0 dot-grid opacity-10" />
+                            <span className="absolute bottom-3 left-3 font-mono text-[10px] text-text-muted">
+                              Screenshot {n + 1}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    ))
+                  : [1, 2, 3, 4].map((n) => (
+                      <div
+                        key={n}
+                        className="aspect-[4/3] bg-bg-secondary border border-border relative"
+                      >
+                        <div className="absolute inset-0 dot-grid opacity-10" />
+                        <span className="absolute bottom-3 left-3 font-mono text-[10px] text-text-muted">
+                          Screenshot {n}
+                        </span>
+                      </div>
+                    ))}
               </div>
             </div>
           </motion.div>
@@ -215,21 +263,23 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* Next Project */}
-      <section className="border-t border-border bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-4">
-            Next Project
-          </span>
-          <Link
-            href={`/projects/${nextProject.slug}`}
-            className="group inline-block"
-          >
-            <h3 className="font-display font-bold text-3xl md:text-4xl group-hover:text-accent transition-colors duration-200">
-              {nextProject.title} →
-            </h3>
-          </Link>
-        </div>
-      </section>
+      {nextProject && (
+        <section className="border-t border-border bg-bg-secondary">
+          <div className="max-w-7xl mx-auto px-6 py-16">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-4">
+              Next Project
+            </span>
+            <Link
+              href={`/projects/${nextProject.slug}`}
+              className="group inline-block"
+            >
+              <h3 className="font-display font-bold text-3xl md:text-4xl group-hover:text-accent transition-colors duration-200">
+                {nextProject.title} →
+              </h3>
+            </Link>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
