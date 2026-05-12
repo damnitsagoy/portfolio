@@ -1,15 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Project } from "@/lib/projects";
+import { urlFor } from "@/sanity/client";
 
 interface ProjectCardProps {
   project: Project;
   index?: number;
 }
 
+function getThumbnailUrl(thumbnail: any): string {
+  if (!thumbnail) return "";
+  if (typeof thumbnail === "string") return thumbnail;
+  if (thumbnail?.asset) return urlFor(thumbnail).width(800).height(500).url();
+  return "";
+}
+
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const thumbUrl = getThumbnailUrl(project.thumbnail);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -21,14 +32,26 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         href={`/projects/${project.slug}`}
         className="group block border border-border hover:border-text-primary transition-colors duration-200"
       >
-        {/* Thumbnail placeholder */}
+        {/* Thumbnail */}
         <div className="aspect-[16/10] bg-bg-secondary border-b border-border relative overflow-hidden">
-          <div className="absolute inset-0 dot-grid opacity-30" />
-          <div className="absolute top-4 left-4 font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
+          {thumbUrl ? (
+            <Image
+              src={thumbUrl}
+              alt={project.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 dot-grid opacity-30" />
+              <div className="absolute bottom-4 right-4 font-mono text-[4rem] font-bold text-border leading-none opacity-50 group-hover:text-accent/30 transition-colors duration-200">
+                {project.id}
+              </div>
+            </>
+          )}
+          <div className="absolute top-4 left-4 font-mono text-xs text-text-muted uppercase tracking-[0.15em] bg-bg-primary/80 px-2 py-1">
             [{project.id}]
-          </div>
-          <div className="absolute bottom-4 right-4 font-mono text-[4rem] font-bold text-border leading-none opacity-50 group-hover:text-accent/30 transition-colors duration-200">
-            {project.id}
           </div>
         </div>
 

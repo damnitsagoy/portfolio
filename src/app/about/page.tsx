@@ -4,33 +4,33 @@ import { motion } from "framer-motion";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
 const skills = {
-  Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  Backend: ["Node.js", "Python", "Go", "PostgreSQL", "Redis"],
-  Design: ["Figma", "Design Systems", "UI/UX", "Prototyping"],
-  DevOps: ["Docker", "Kubernetes", "CI/CD", "AWS", "Vercel"],
+  "3D & Animation": ["Blender", "Cinema 4D", "After Effects", "Motion Graphics", "Character Animation"],
+  "Film & Photography": ["Premiere Pro", "DaVinci Resolve", "Lightroom", "Cinematography", "Color Grading"],
+  "Brand & Design": ["Figma", "Illustrator", "Photoshop", "Identity Design", "Art Direction"],
+  "Music & Audio": ["Ableton Live", "Logic Pro", "Sound Design", "Mixing", "Music Production"],
 };
 
 const experience = [
   {
     period: "2022 — Present",
-    role: "Senior Full-Stack Developer",
-    company: "Freelance / Contract",
+    role: "Freelance Creative Director",
+    company: "Independent",
     description:
-      "Building digital products for startups and agencies. Specializing in Next.js, design systems, and creative technology.",
+      "Leading creative projects end-to-end — from brand identities and 3D visuals to music production and video content for clients worldwide.",
   },
   {
     period: "2020 — 2022",
-    role: "Full-Stack Developer",
-    company: "Tech Agency",
+    role: "Motion Designer & 3D Artist",
+    company: "Creative Agency",
     description:
-      "Led development of client projects from concept to deployment. Managed small teams and client relationships.",
+      "Created 3D animations, brand films, and visual identities for startups and established brands. Led motion design for campaigns.",
   },
   {
     period: "2019 — 2020",
-    role: "Frontend Developer",
-    company: "SaaS Startup",
+    role: "Visual Designer & Videographer",
+    company: "Studio",
     description:
-      "Built the product frontend from scratch. Established coding standards and component architecture.",
+      "Shot and edited video content, designed brand materials, and developed visual systems for diverse clients.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
           transition={{ duration: 0.4 }}
           className="font-mono text-xs text-text-muted uppercase tracking-[0.15em] mb-4"
         >
-          [About] — Background & Skills
+          [About] — Background & Craft
         </motion.div>
 
         <motion.h1
@@ -69,21 +69,21 @@ export default function AboutPage() {
             className="lg:col-span-7"
           >
             <p className="font-display text-2xl md:text-3xl leading-snug mb-8">
-              I&apos;m a creative full-stack developer who bridges the gap between{" "}
-              <span className="font-serif italic text-accent">design</span> and{" "}
-              <span className="font-serif italic text-accent">engineering</span>.
+              I&apos;m a multi-disciplinary creative who moves fluidly between{" "}
+              <span className="font-serif italic text-accent">visual</span>,{" "}
+              <span className="font-serif italic text-accent">motion</span>, and{" "}
+              <span className="font-serif italic text-accent">sound</span>.
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
-              With 4+ years of experience building digital products, I specialize in
-              creating performant, accessible, and visually compelling web
-              applications. I believe great software is built at the intersection of
-              technical excellence and thoughtful design.
+              I don&apos;t fit into one box. I model in 3D, animate characters, edit films,
+              produce music, shoot photography, and build brand identities — whatever the
+              project demands. I believe the best creative work happens when you can think
+              across mediums and bring unexpected connections to the table.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              I work across the full stack — from crafting pixel-perfect UIs and
-              design systems to architecting scalable backend services. My approach
-              is methodical: understand the problem deeply, design the solution
-              carefully, and execute with precision.
+              My approach is obsessive attention to detail combined with a willingness to
+              experiment. Every project is an opportunity to push into new territory, blend
+              disciplines, and create something that feels both fresh and intentional.
             </p>
           </motion.div>
 
@@ -95,10 +95,10 @@ export default function AboutPage() {
           >
             <div className="grid grid-cols-2 gap-8">
               {[
-                { number: 4, label: "Years Active", suffix: "+" },
-                { number: 12, label: "Projects Shipped", suffix: "+" },
-                { number: 8, label: "Technologies", suffix: "" },
-                { number: 3, label: "Industries", suffix: "" },
+                { number: 4, label: "Years Creating", suffix: "+" },
+                { number: 12, label: "Projects Delivered", suffix: "+" },
+                { number: 6, label: "Disciplines", suffix: "" },
+                { number: 5, label: "Industries", suffix: "" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="font-display font-bold text-4xl md:text-5xl leading-none mb-1">
@@ -127,7 +127,7 @@ export default function AboutPage() {
               Capabilities
             </span>
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">
-              Technical Skills
+              Creative Skills
             </h2>
           </motion.div>
 

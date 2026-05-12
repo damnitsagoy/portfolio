@@ -32,8 +32,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio — Creative Full-Stack Developer",
-  description: "Creative full-stack developer portfolio showcasing diverse projects in web, mobile, and design.",
+  title: "Yoga Adi — Multi-Disciplinary Creative",
+  description: "Multi-disciplinary creative portfolio — 3D, animation, video, music production, photography, and brand development.",
 };
 
 export default function RootLayout({
@@ -52,10 +52,10 @@ export default function RootLayout({
         <footer className="border-t border-dotted border-border py-8 px-6">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <span className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
-              &copy; 2024 — All Rights Reserved
+              &copy; 2024 — Yoga Adi
             </span>
             <span className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
-              Built with precision
+              Crafted with intention
             </span>
           </div>
         </footer>

@@ -33,11 +33,11 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           className="font-display font-bold text-[clamp(3rem,8vw,8rem)] leading-[0.9] tracking-tight mb-8"
         >
+          MULTI-
+          <br />
+          <span className="text-text-secondary">DISCIPLINARY</span>
+          <br />
           CREATIVE
-          <br />
-          <span className="text-text-secondary">FULL-STACK</span>
-          <br />
-          DEVELOPER
         </motion.h1>
 
         <motion.div
@@ -54,8 +54,8 @@ export default function Home() {
           className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8"
         >
           <p className="text-text-secondary text-sm max-w-md">
-            Building digital products with precision and craft. Specializing in
-            full-stack web applications, design systems, and creative technology.
+            Crafting visual stories across mediums — 3D, motion, film, sound, and brand.
+            Where creative vision meets technical execution.
           </p>
           <div className="flex items-center gap-6">
             <Link
@@ -79,9 +79,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { number: 12, label: "Projects", suffix: "+" },
-            { number: 4, label: "Years Experience", suffix: "+" },
-            { number: 8, label: "Technologies", suffix: "" },
-            { number: 100, label: "Satisfaction", suffix: "%" },
+            { number: 6, label: "Disciplines", suffix: "" },
+            { number: 4, label: "Years Creating", suffix: "+" },
+            { number: 100, label: "Passion", suffix: "%" },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -150,9 +150,9 @@ export default function Home() {
               [03] — Collaboration
             </span>
             <h2 className="font-display font-bold text-[clamp(2rem,5vw,4rem)] leading-tight mb-6">
-              Let&apos;s build something
+              Let&apos;s create something
               <br />
-              <span className="font-serif italic text-accent">together</span>
+              <span className="font-serif italic text-accent">extraordinary</span>
             </h2>
             <Link
               href="/contact"

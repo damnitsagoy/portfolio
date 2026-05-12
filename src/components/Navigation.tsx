@@ -20,7 +20,7 @@ export default function Navigation() {
           href="/"
           className="font-display font-bold text-lg tracking-tight text-text-primary hover:text-accent transition-colors duration-200"
         >
-          PORTFOLIO
+          YOGA ADI
         </Link>
 
         <ul className="flex items-center gap-8">

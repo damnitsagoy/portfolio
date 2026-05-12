@@ -3,7 +3,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { apiVersion, dataset, projectId } from "./env";
 
 // Only create a real client if projectId is configured
-const isSanityConfigured = !!projectId;
+export const isSanityConfigured = !!projectId;
 
 export const client = isSanityConfigured
   ? createClient({
@@ -18,9 +18,20 @@ const builder = isSanityConfigured
   ? imageUrlBuilder({ projectId, dataset })
   : null;
 
+// Chainable image URL helper — returns a builder that supports .width().height().url() etc.
 export function urlFor(source: any) {
-  if (!builder) return { width: () => ({ url: () => "" }), url: () => "" };
+  if (!builder || !source) {
+    // Return a dummy chainable object
+    const dummy: any = {
+      width: () => dummy,
+      height: () => dummy,
+      fit: () => dummy,
+      auto: () => dummy,
+      format: () => dummy,
+      quality: () => dummy,
+      url: () => "",
+    };
+    return dummy;
+  }
   return builder.image(source);
 }
-
-export { isSanityConfigured };

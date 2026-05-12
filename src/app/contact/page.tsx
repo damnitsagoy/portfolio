@@ -49,8 +49,8 @@ export default function ContactPage() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="text-text-secondary max-w-lg"
         >
-          Have a project in mind? I&apos;d love to hear about it. Send me a message
-          and let&apos;s explore how we can work together.
+          Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s a
+          brand film, 3D visuals, music, or something entirely new — let&apos;s talk.
         </motion.p>
 
         <div className="border-t border-dotted border-border mt-12" />
@@ -106,12 +106,13 @@ export default function ContactPage() {
                   className="w-full border-b-2 border-border bg-transparent py-3 text-text-primary focus:border-accent focus:outline-none transition-colors duration-200 font-body appearance-none cursor-pointer"
                 >
                   <option value="">Select a project type</option>
-                  <option value="web-app">Web Application</option>
-                  <option value="mobile-app">Mobile Application</option>
-                  <option value="design-system">Design System</option>
-                  <option value="api">API / Backend</option>
-                  <option value="consulting">Consulting</option>
-                  <option value="other">Other</option>
+                  <option value="3d-animation">3D & Animation</option>
+                  <option value="video-film">Video & Film</option>
+                  <option value="brand-identity">Brand Identity</option>
+                  <option value="music-audio">Music & Audio</option>
+                  <option value="photography">Photography</option>
+                  <option value="motion-graphics">Motion Graphics</option>
+                  <option value="other">Other / Multi-Discipline</option>
                 </select>
               </div>
 
