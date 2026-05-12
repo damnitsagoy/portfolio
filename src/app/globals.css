@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors - Base */
+  --color-bg-primary: #FAFAFA;
+  --color-bg-secondary: #F0F0F0;
+  --color-bg-dark: #1A1A1A;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: #9B9B9B;
+
+  /* Colors - Accent */
+  --color-accent: #FF4D00;
+  --color-accent-hover: #E64500;
+
+  /* Colors - Functional */
+  --color-border: #E0E0E0;
+  --color-border-dark: #333333;
+  --color-dot: #CCCCCC;
+
+  /* Fonts */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-serif: "Instrument Serif", serif;
+
+  /* Spacing - editorial rhythm */
+  --spacing-section: 8rem;
+  --spacing-block: 4rem;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Dot grid pattern utility */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark);
+}
+
+/* Hairline utility */
+.hairline {
+  height: 1px;
+  background-color: var(--color-border);
+  width: 100%;
+}
+
+.hairline-dark {
+  height: 1px;
+  background-color: var(--color-border-dark);
+  width: 100%;
+}
