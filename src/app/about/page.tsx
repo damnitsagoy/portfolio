@@ -259,6 +259,118 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+      {/* Education */}
+      <section className="border-t border-border bg-bg-secondary">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em] block mb-2">
+              Academic
+            </span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">
+              Education
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="border-t border-border py-8 grid grid-cols-1 md:grid-cols-12 gap-4"
+          >
+            <div className="md:col-span-3">
+              <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
+                Sep 2020 — Jun 2024
+              </span>
+            </div>
+            <div className="md:col-span-9">
+              <h3 className="font-display font-bold text-lg mb-1">
+                Bachelor of Communication Science (S1)
+              </h3>
+              <p className="font-mono text-xs text-accent uppercase tracking-[0.1em] mb-3">
+                UPN &quot;Veteran&quot; Yogyakarta
+              </p>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                Graduated Cum Laude with a GPA of 3.73
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Extracurricular */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em] block mb-2">
+            Activities
+          </span>
+          <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">
+            Extracurricular
+          </h2>
+        </motion.div>
+
+        <div className="space-y-0">
+          {[
+            {
+              period: "2022 — 2024",
+              role: "Head of 3D & Animation Division / Graphic Designer",
+              company: "Media Kreatif UPN Veteran Yogyakarta",
+              description:
+                "Led the 3D & Animation division. Designed graphics for the Instagram of FISIP UPN \"Veteran\" Yogyakarta.",
+            },
+            {
+              period: "2020 — 2022",
+              role: "Director, Composer & Audio Engineer",
+              company: "AVIKOM (Audio Visual Communication) UPN Veteran Yogyakarta",
+              description:
+                "Directed & composed music for the film \"Kahanan\". Served as audio engineer & composer for the film \"Cermin Usang Tak Terbuang\". Audio engineer for AVIKOM's production \"Gempur Rokok Illegal\". Coordinated the AVIKOM General Assembly 2020/2021. Edited video content for Instagram \"Parade Film Avikom\" (PFA) 2022.",
+            },
+            {
+              period: "2022",
+              role: "Participant & Director",
+              company: "Bank Indonesia \"Digital Competition\"",
+              description:
+                "Directed a one-minute video themed \"QRIS\" for the Bank Indonesia Digital Competition.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={item.period + item.role}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="border-t border-border py-8 grid grid-cols-1 md:grid-cols-12 gap-4"
+            >
+              <div className="md:col-span-3">
+                <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em]">
+                  {item.period}
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <h3 className="font-display font-bold text-lg mb-1">
+                  {item.role}
+                </h3>
+                <p className="font-mono text-xs text-accent uppercase tracking-[0.1em] mb-3">
+                  {item.company}
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

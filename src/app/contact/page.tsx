@@ -1,27 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    project: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Message sent! (Demo only)");
-  };
-
   return (
     <div className="min-h-screen">
       <section className="max-w-7xl mx-auto px-6 pt-24 pb-16">
@@ -49,151 +30,108 @@ export default function ContactPage() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="text-text-secondary max-w-lg"
         >
-          Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s a
-          brand film, 3D visuals, music, or something entirely new — let&apos;s talk.
+          Have a project in mind? Whether it&apos;s a brand film, 3D visuals, music,
+          or something entirely new — reach out through any of the channels below.
         </motion.p>
 
         <div className="border-t border-dotted border-border mt-12" />
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Email */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="lg:col-span-7"
+            transition={{ duration: 0.4, delay: 0.25 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div>
-                <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-3">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full border-b-2 border-border bg-transparent py-3 text-text-primary placeholder:text-text-muted/50 focus:border-accent focus:outline-none transition-colors duration-200 font-body"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-3">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full border-b-2 border-border bg-transparent py-3 text-text-primary placeholder:text-text-muted/50 focus:border-accent focus:outline-none transition-colors duration-200 font-body"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-3">
-                  Project Type
-                </label>
-                <select
-                  name="project"
-                  value={formState.project}
-                  onChange={handleChange}
-                  className="w-full border-b-2 border-border bg-transparent py-3 text-text-primary focus:border-accent focus:outline-none transition-colors duration-200 font-body appearance-none cursor-pointer"
-                >
-                  <option value="">Select a project type</option>
-                  <option value="3d-animation">3D & Animation</option>
-                  <option value="video-film">Video & Film</option>
-                  <option value="brand-identity">Brand Identity</option>
-                  <option value="music-audio">Music & Audio</option>
-                  <option value="photography">Photography</option>
-                  <option value="motion-graphics">Motion Graphics</option>
-                  <option value="other">Other / Multi-Discipline</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted block mb-3">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full border-b-2 border-border bg-transparent py-3 text-text-primary placeholder:text-text-muted/50 focus:border-accent focus:outline-none transition-colors duration-200 font-body resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="border-2 border-text-primary px-8 py-4 font-mono text-xs uppercase tracking-[0.15em] hover:bg-text-primary hover:text-bg-primary transition-colors duration-200"
-              >
-                Send Message
-              </button>
-            </form>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
+              Email
+            </h3>
+            <a
+              href="mailto:yogaadidhrm@gmail.com"
+              className="block font-body text-text-primary hover:text-accent transition-colors duration-200"
+            >
+              yogaadidhrm@gmail.com
+            </a>
           </motion.div>
 
-          <motion.aside
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.35 }}
-            className="lg:col-span-5 lg:pl-12 lg:border-l lg:border-dotted lg:border-border"
+          {/* WhatsApp */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
           >
-            <div className="mb-12">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
-                Direct
-              </h3>
-              <a
-                href="mailto:yogaadidhrm@gmail.com"
-                className="block font-body text-text-primary hover:text-accent transition-colors duration-200"
-              >
-                yogaadidhrm@gmail.com
-              </a>
-            </div>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
+              WhatsApp
+            </h3>
+            <a
+              href="https://wa.me/6285156056929"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block font-body text-text-primary hover:text-accent transition-colors duration-200"
+            >
+              +62 851 5605 6929
+            </a>
+          </motion.div>
 
-            <div className="mb-12">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
-                Social
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { label: "LinkedIn", url: "https://www.linkedin.com/in/yogaadid/" },
-                  { label: "Instagram", url: "https://instagram.com/yoga.ia" },
-                ].map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block font-mono text-sm text-text-secondary hover:text-accent transition-colors duration-200"
-                  >
-                    {social.label} ↗
-                  </a>
-                ))}
-              </div>
-            </div>
+          {/* LinkedIn */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.35 }}
+          >
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
+              LinkedIn
+            </h3>
+            <a
+              href="https://www.linkedin.com/in/yogaadid/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block font-mono text-sm text-text-primary hover:text-accent transition-colors duration-200"
+            >
+              yogaadid ↗
+            </a>
+          </motion.div>
 
-            <div className="border border-border p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
-                  Available for Work
-                </span>
-              </div>
-              <p className="text-sm text-text-secondary">
-                Currently accepting new projects and collaborations. Response time:
-                24–48 hours.
-              </p>
-            </div>
-          </motion.aside>
+          {/* Instagram */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+          >
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted mb-4">
+              Instagram
+            </h3>
+            <a
+              href="https://instagram.com/yoga.ia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block font-mono text-sm text-text-primary hover:text-accent transition-colors duration-200"
+            >
+              @yoga.ia ↗
+            </a>
+          </motion.div>
         </div>
+
+        {/* Availability card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.45 }}
+          className="mt-16 border border-border p-6 max-w-sm"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+              Available for Work
+            </span>
+          </div>
+          <p className="text-sm text-text-secondary">
+            Currently accepting new projects and collaborations. Response time:
+            24–48 hours.
+          </p>
+        </motion.div>
       </section>
     </div>
   );
