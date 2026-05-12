@@ -11,6 +11,7 @@ export default defineConfig({
   title: "Portfolio Studio",
   projectId,
   dataset,
+  basePath: "/studio",
   plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],
   schema: {
     types: schemaTypes,

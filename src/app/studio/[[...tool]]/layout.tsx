@@ -1,4 +1,6 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Portfolio Studio",
   description: "Content management for the portfolio",
 };
@@ -9,8 +11,18 @@ export default function StudioLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body style={{ margin: 0 }}>{children}</body>
-    </html>
+    <div
+      id="sanity-studio"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 9999,
+      }}
+    >
+      {children}
+    </div>
   );
 }
