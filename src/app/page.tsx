@@ -1,13 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import { getFeaturedProjects } from "@/lib/projects";
+import { getFeaturedProjects, type Project } from "@/lib/projects";
 import Link from "next/link";
 
 export default function Home() {
-  const featured = getFeaturedProjects();
+  const [featured, setFeatured] = useState<Project[]>([]);
+
+  useEffect(() => {
+    getFeaturedProjects().then(setFeatured);
+  }, []);
 
   return (
     <div className="min-h-screen">

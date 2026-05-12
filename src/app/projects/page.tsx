@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
-import { projects, getAllCategories } from "@/lib/projects";
+import { getAllProjects, getAllCategories, type Project } from "@/lib/projects";
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const categories = ["All", ...getAllCategories()];
+
+  useEffect(() => {
+    getAllProjects().then(setProjects);
+    getAllCategories().then((cats) => setCategories(["All", ...cats]));
+  }, []);
 
   const filtered =
     activeFilter === "All"
