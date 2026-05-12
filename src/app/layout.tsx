@@ -32,7 +32,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Yoga Adi — Multi-Disciplinary Creative",
+  title: "Yoga Adi Dharma — Multi-Disciplinary Creative",
   description: "Multi-disciplinary creative portfolio — 3D, animation, video, music production, photography, and brand development.",
 };
 
@@ -52,7 +52,7 @@ export default function RootLayout({
         <footer className="border-t border-dotted border-border py-8 px-6">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <span className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
-              &copy; 2024 — Yoga Adi
+              &copy; 2026 — Yoga Adi Dharma
             </span>
             <span className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
               Crafted with intention

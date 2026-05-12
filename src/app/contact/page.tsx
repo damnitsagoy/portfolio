@@ -151,10 +151,10 @@ export default function ContactPage() {
                 Direct
               </h3>
               <a
-                href="mailto:hello@example.com"
+                href="mailto:yogaadidhrm@gmail.com"
                 className="block font-body text-text-primary hover:text-accent transition-colors duration-200"
               >
-                hello@example.com
+                yogaadidhrm@gmail.com
               </a>
             </div>
 
@@ -164,10 +164,8 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-3">
                 {[
-                  { label: "GitHub", url: "https://github.com" },
-                  { label: "LinkedIn", url: "https://linkedin.com" },
-                  { label: "Twitter / X", url: "https://x.com" },
-                  { label: "Dribbble", url: "https://dribbble.com" },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/yogaadid/" },
+                  { label: "Instagram", url: "https://instagram.com/yoga.ia" },
                 ].map((social) => (
                   <a
                     key={social.label}

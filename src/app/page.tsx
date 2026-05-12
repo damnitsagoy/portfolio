@@ -149,14 +149,13 @@ export default function Home() {
             <span className="font-mono text-xs text-text-muted uppercase tracking-[0.15em] block mb-4">
               [03] — Collaboration
             </span>
-            <h2 className="font-display font-bold text-[clamp(2rem,5vw,4rem)] leading-tight mb-6">
-              Let&apos;s create something
-              <br />
+            <h2 className="font-display font-bold text-[clamp(2rem,5vw,4rem)] leading-tight mb-8">
+              Let&apos;s create something{" "}
               <span className="font-serif italic text-accent">extraordinary</span>
             </h2>
             <Link
               href="/contact"
-              className="inline-block border-2 border-text-primary px-8 py-4 font-mono text-xs uppercase tracking-[0.15em] hover:bg-text-primary hover:text-bg-primary transition-colors duration-200"
+              className="inline-block border-2 border-text-primary px-8 py-4 font-mono text-xs uppercase tracking-[0.15em] hover:bg-text-primary hover:text-bg-primary transition-colors duration-200 relative z-10"
             >
               Start a Conversation
             </Link>

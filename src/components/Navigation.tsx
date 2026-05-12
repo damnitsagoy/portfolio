@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/", label: "Index" },
+  { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -20,7 +20,7 @@ export default function Navigation() {
           href="/"
           className="font-display font-bold text-lg tracking-tight text-text-primary hover:text-accent transition-colors duration-200"
         >
-          YOGA ADI
+          YOGA ADI DHARMA
         </Link>
 
         <ul className="flex items-center gap-8">

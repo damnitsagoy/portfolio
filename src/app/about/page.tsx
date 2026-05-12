@@ -4,33 +4,66 @@ import { motion } from "framer-motion";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
 const skills = {
-  "3D & Animation": ["Blender", "Cinema 4D", "After Effects", "Motion Graphics", "Character Animation"],
-  "Film & Photography": ["Premiere Pro", "DaVinci Resolve", "Lightroom", "Cinematography", "Color Grading"],
-  "Brand & Design": ["Figma", "Illustrator", "Photoshop", "Identity Design", "Art Direction"],
-  "Music & Audio": ["Ableton Live", "Logic Pro", "Sound Design", "Mixing", "Music Production"],
+  "3D & Animation": {
+    software: ["Blender"],
+    skills: ["Hard Surface Modelling", "Organic Surface Modelling", "Animating"],
+  },
+  "Film & Photography": {
+    software: ["Premiere Pro", "DaVinci Resolve", "Lightroom"],
+    skills: ["Directing", "Color Grading", "Cinematography"],
+  },
+  "Brand & Design": {
+    software: ["Illustrator", "Photoshop", "InDesign"],
+    skills: ["Brand Development", "Art Direction", "Brand Logo Design"],
+  },
+  "Music & Audio": {
+    software: ["Ableton Live", "FL Studio", "Pro Tools"],
+    skills: ["Music Production", "Mixing", "Mastering", "Sound Design"],
+  },
 };
 
 const experience = [
   {
-    period: "2022 — Present",
-    role: "Freelance Creative Director",
+    period: "2024 — Present",
+    role: "Brand Marketing Specialist",
+    company: "DIGITAMA",
+    description:
+      "Managing Instagram (@inavoicecom), TikTok (@inavoice), and YouTube for Inavoice Voice Over Agency. Creating content plans, designing briefs, and preparing content for upload. Building campaigns aligned with Inavoice's vision. Grew Instagram beyond follower targets and achieved an average of 50k views per TikTok video.",
+  },
+  {
+    period: "2023 — Present",
+    role: "Freelance Creative",
     company: "Independent",
     description:
-      "Leading creative projects end-to-end — from brand identities and 3D visuals to music production and video content for clients worldwide.",
+      "Working on a wide range of creative projects — branding, 3D modelling and animation, video production, and other creative endeavors across multiple disciplines.",
   },
   {
-    period: "2020 — 2022",
-    role: "Motion Designer & 3D Artist",
-    company: "Creative Agency",
+    period: "2023 — Present",
+    role: "Freelance Audio Engineer",
+    company: "INAVOICE",
     description:
-      "Created 3D animations, brand films, and visual identities for startups and established brands. Led motion design for campaigns.",
+      "Editing audio for various needs at INAVOICE Voice Over Agency — from Chinese drama dubbing to audiobook production.",
   },
   {
-    period: "2019 — 2020",
-    role: "Visual Designer & Videographer",
-    company: "Studio",
+    period: "2023",
+    role: "Music Producer",
+    company: "PT Sebangku Jaya Abadi",
     description:
-      "Shot and edited video content, designed brand materials, and developed visual systems for diverse clients.",
+      "Managed the entire production process — engineering, mixing, and mastering — for various audio content including jingles, background music, and voice overs used in the educational media platform \"MARICA.\"",
+  },
+  {
+    period: "2023",
+    role: "Creative Video Campaign Team",
+    company: "PT Stechoq Robotika Indonesia",
+    description:
+      "Designed concepts for a Creative Video Campaign with the team, serving as Producer — managing budget, scheduling production, and overseeing the entire process. Also composed the soundtrack, added SFX, and handled mixing and mastering.",
+  },
+  {
+    period: "2022 — 2023",
+    role: "Audio Editor",
+    company: "INAVOICE (partnered with NOICE)",
+    description:
+      "Edited, paced, and added CUE SFX to raw audiobook recordings for NOICE. Several titles released on NOICE reached Top Trending Audioseries, including: Salma dan Tuan 40, Issues, Life Takers, Zombie Zone: The Real Pandemic, Diari Merah Diah, and more.",
   },
 ];
 
@@ -132,7 +165,7 @@ export default function AboutPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {Object.entries(skills).map(([category, items], i) => (
+            {Object.entries(skills).map(([category, data], i) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
@@ -144,16 +177,36 @@ export default function AboutPage() {
                 <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-accent mb-4">
                   {category}
                 </h3>
-                <ul className="space-y-2">
-                  {items.map((item) => (
-                    <li
-                      key={item}
-                      className="text-sm text-text-secondary font-mono"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mb-4">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted block mb-2">
+                    Software
+                  </span>
+                  <ul className="space-y-1">
+                    {data.software.map((item) => (
+                      <li
+                        key={item}
+                        className="text-sm text-text-primary font-mono"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted block mb-2">
+                    Skills
+                  </span>
+                  <ul className="space-y-1">
+                    {data.skills.map((item) => (
+                      <li
+                        key={item}
+                        className="text-sm text-text-secondary font-mono"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </motion.div>
             ))}
           </div>
